@@ -5,7 +5,8 @@ import org.springframework.stereotype.Component;
 import java.util.Collection;
 
 /**
- *
+ * @author lvenkateswaran
+ * Removes an entry of correct answers to facilitate generating random values.
  */
 @Component("duplicate-remover")
 public class Deduplicator implements PreProcessing {

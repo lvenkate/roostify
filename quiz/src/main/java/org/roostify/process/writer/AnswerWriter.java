@@ -1,13 +1,12 @@
 package org.roostify.process.writer;
 
-import lombok.extern.log4j.Log4j2;
+import org.roostify.Writing;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import org.roostify.Writing;
 
 @Component("answer-writer")
 public class AnswerWriter implements Writing<String> {

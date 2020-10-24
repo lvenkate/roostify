@@ -1,19 +1,25 @@
 package org.roostify.endpoint.admin;
 
-import org.roostify.config.endpoint.Endpoint;
+import org.roostify.config.endpoint.EndpointConfig;
 import org.roostify.process.processor.QuizGenerator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
-@CrossOrigin(methods = {GET, POST})
+/**
+ * Requests to operate on quiz resources.
+ */
+@RestController
+@CrossOrigin(methods = {POST, DELETE})
 public class GeographyQuizEndpoint {
 
     final QuizGenerator generator;
@@ -23,13 +29,13 @@ public class GeographyQuizEndpoint {
     }
 
     @RequestMapping(
-            value = Endpoint.RequestGenerateQuiz.Path.NAME,
+            value = EndpointConfig.RequestGenerateQuiz.Path.NAME,
             method = POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<QuizResponse> generate(
-            final QuizRequest request) throws IOException {
+            @RequestBody final QuizRequest request) throws IOException {
         HttpStatus status = null;
         QuizResponse response = new QuizResponse();
         try {
@@ -48,14 +54,15 @@ public class GeographyQuizEndpoint {
     }
 
     @RequestMapping(
-            value = Endpoint.RequestGenerateQuiz.Path.NAME,
+            value = EndpointConfig.RequestGenerateQuiz.Path.NAME,
             method = DELETE,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<QuizResponse> remove(
-            final CleanRequest request) {
+            @RequestBody final CleanRequest request) {
         HttpStatus status = null;
+        System.out.println("Deleting:"  + request.dirName);
         QuizResponse response = new QuizResponse();
         try {
             boolean result = generator.remove(request.dirName);

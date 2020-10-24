@@ -5,8 +5,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
+/**
+ * Responsible for generating unique list of choices with the answer embedded.
+ */
 @Component("options-generator")
-public class OptionsGenerator implements Generating{
+public class OptionsGenerator {
 
     public Option generate(final String[] values, final int pnOptions, final String capital) throws IllegalArgumentException{
 

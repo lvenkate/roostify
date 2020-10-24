@@ -17,8 +17,9 @@ import java.util.Random;
  * Responsible for generating random set of questions.
  */
 @Component("question-generator")
-public class QuestionGenerator implements Generating {
+public class QuestionGenerator {
 
+    static final int seed = StatesCapital.map.size();
     final OptionsGenerator optionsGenerator;
     final Deduplicator deduplicator;
 
@@ -29,14 +30,14 @@ public class QuestionGenerator implements Generating {
     }
 
     public ArrayList<Question> generate(final int nQuestions, final int nOptions) {
-        int[] indexes = GeneralUtilities.seed(nQuestions);
+        int[] indexes = GeneralUtilities.seed(seed);
         shuffle(indexes);
 
         int i = 0;
         String[] states = StatesCapital.getStates();
 
         ArrayList<Question> questions = new ArrayList<>();
-        while (i < nQuestions) {
+        while (i < seed) {
             String state = states[indexes[i]];
             String question = "Which is the capital of " + state + "?";
             String capital = StatesCapital.map.get(state);
@@ -47,7 +48,6 @@ public class QuestionGenerator implements Generating {
                 options = optionsGenerator.generate(values, nOptions - 1, capital);
             } catch (Exception ex) {
                 ex.printStackTrace();
-                System.out.println( );
             }
             Question q = new Question(question, options);
             questions.add(q);

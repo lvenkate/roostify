@@ -49,8 +49,7 @@ public class QuestionGeneratorTest {
         System.out.println(Arrays.toString(captureIndex));
         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 
-        for (int i = 0; i < captureIndex.length; i++) {
-            int key = captureIndex[i];
+        for (int key : captureIndex) {
             if (map.containsKey(key))
                 map.put(key, map.get(key) + 1);
             else {

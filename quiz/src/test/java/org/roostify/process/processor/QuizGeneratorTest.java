@@ -23,6 +23,7 @@ public class QuizGeneratorTest {
 
     @Qualifier("options-generator")
     OptionsGenerator pOptionsGenerator;
+
     @Qualifier("duplicate-remover")
     Deduplicator deduplicator;
 

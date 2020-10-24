@@ -2,6 +2,10 @@ package org.roostify.model;
 
 import java.util.List;
 
+/**
+ * @author lvenkateswaran
+ * Quiz structure.
+ */
 public class Quiz {
 
     int id;
@@ -13,7 +17,6 @@ public class Quiz {
         id = pid;
         nQuestions = pNQuestions;
     }
-
 
     public List<Question> getQuestions() {
         return questions;
@@ -37,6 +40,16 @@ public class Quiz {
 
     public void setnQuestions(int nQuestions) {
         this.nQuestions = nQuestions;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Quiz{" +
+                "id=" + id +
+                ", nQuestions=" + nQuestions +
+                ", questions=" + questions +
+                '}';
     }
 
 }

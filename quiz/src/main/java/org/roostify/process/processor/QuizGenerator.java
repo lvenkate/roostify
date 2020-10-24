@@ -1,9 +1,9 @@
 package org.roostify.process.processor;
 
-import org.roostify.Generating;
 import org.roostify.Writing;
 import org.roostify.model.Question;
 import org.roostify.model.Quiz;
+import org.roostify.repository.StatesCapital;
 import org.roostify.utility.GeneralUtilities;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -19,10 +19,8 @@ import java.util.List;
  */
 //@Log4j2
 @Component("quiz-generator")
-public class QuizGenerator implements Generating {
-    final int seed = 50;
-    static int counter = 1;
-
+public class QuizGenerator {
+    final int seed = StatesCapital.map.size();
     final Writing<String> answerWriter;
     final Writing<Quiz> quizWriter;
     final QuestionGenerator questionGenerator;
@@ -36,9 +34,10 @@ public class QuizGenerator implements Generating {
     }
 
     public String generate(final int noOfQuizSets, final int batch, final int options) {
+
         // No. of questions that can be generated in one round for a given seed;
+        int counter = 1;
         int totalQuestions = seed / batch;
-        System.out.println(totalQuestions);
         int nOfRounds = noOfQuizSets * batch / totalQuestions;
         String path = "/temp/roostify/";
         String answerFile = path + "/answer.txt";
@@ -55,7 +54,6 @@ public class QuizGenerator implements Generating {
             int b = 0;
             while (b < questions.size()) {
                 List<Question> list = questions.subList(b, b + batch);
-
                 Quiz quiz = new Quiz(counter, batch);
                 quiz.setQuestions(list);
                 String heading = "Quiz " + counter;

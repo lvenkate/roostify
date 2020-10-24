@@ -1,7 +1,7 @@
 package org.roostify.model;
 
 /**
- *
+ * Placeholder that describes structure of a question.
  */
 public class Question {
 

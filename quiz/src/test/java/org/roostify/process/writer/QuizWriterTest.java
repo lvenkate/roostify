@@ -15,7 +15,7 @@ public class QuizWriterTest {
 
     QuizWriter writer;
     Quiz item;
-    String fileName = "/temp/roostify/Quiztest.txt";
+    String fileName = "Quiztest.txt";
     @Before
     public void setUp() throws Exception {
         writer = new QuizWriter();

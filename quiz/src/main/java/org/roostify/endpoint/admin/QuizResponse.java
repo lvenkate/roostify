@@ -1,5 +1,8 @@
 package org.roostify.endpoint.admin;
 
+/**
+ * Responsible for mapping quiz operation responses.
+ */
 public class QuizResponse {
     String message;
 
